@@ -1,0 +1,45 @@
+#!/bin/sh
+
+# POST-RECEIVE for nodejs express project with uberdeploy on uberspace
+# npm install
+
+
+DOMAIN=			# "example.com"
+PORT=			# Select between 61000 - 65535
+
+
+
+
+
+######################### DO NOT CHANGE #############################################
+
+
+# Service handler
+SERVICEDIR="${HOME}/service/${SERVICENAME}";
+DAEMON="${PWD}/service"
+SERVICENAME="${DOMAIN}"
+
+
+if [ ! -d ${SERVICEDIR} ]
+then
+	remote_notify 'Creating service'
+	remote_notify 'Starting service...'
+	uberspace-setup-service ${SERVICENAME} ${DAEMON} > /dev/null 2>&1
+else
+	remote_notify 'Restarting service...'
+	svc -h ${SERVICEDIR}
+fi
+
+
+
+# Create public dir
+WWWPATH="/var/www/virtual/${USER}"
+PUBLICDIR="${WWWPATH}/${DOMAIN}";
+mkdir -p ${PUBLICDIR}
+
+
+# Create htaccess proxy for PORT
+cat <<EOT > ${PUBLICDIR}/.htaccess
+RewriteEngine On
+RewriteRule ^(.*) http://localhost:${PORT}/\$1 [P]
+EOT

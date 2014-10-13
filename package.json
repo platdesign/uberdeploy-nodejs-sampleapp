@@ -1,0 +1,26 @@
+{
+  "name": "uberdeploy-nodejs-sampleapp",
+  "version": "0.0.0",
+  "description": "uberdeploy-nodejs-sampleapp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/platdesign/uberdeploy-nodejs-sampleapp"
+  },
+  "keywords": [
+    "uberdeploy",
+    "nodejs",
+    "uberspace",
+    "app",
+    "deploy"
+  ],
+  "author": "mail@platdesign.de",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/platdesign/uberdeploy-nodejs-sampleapp/issues"
+  },
+  "homepage": "https://github.com/platdesign/uberdeploy-nodejs-sampleapp"
+}
