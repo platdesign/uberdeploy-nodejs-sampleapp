@@ -15,9 +15,10 @@ PORT=			# Select between 61000 - 65535
 
 
 # Service handler
+SERVICENAME="${DOMAIN}"
 SERVICEDIR="${HOME}/service/${SERVICENAME}";
 DAEMON="${PWD}/service"
-SERVICENAME="${DOMAIN}"
+
 
 
 if [ ! -d ${SERVICEDIR} ]
