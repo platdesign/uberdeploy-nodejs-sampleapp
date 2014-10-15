@@ -1,7 +1,6 @@
 #!/bin/sh
 
 # POST-RECEIVE for nodejs express project with uberdeploy on uberspace
-# npm install
 
 
 DOMAIN=			# "example.com"
@@ -14,21 +13,17 @@ PORT=			# Select between 61000 - 65535
 ######################### DO NOT CHANGE #############################################
 
 
+
 # Service handler
-SERVICENAME="${DOMAIN}"
-SERVICEDIR="${HOME}/service/${SERVICENAME}";
-DAEMON="${PWD}/service"
+SERVICEDIR="${HOME}/service/${PROJECT_NAME}";
 
-
-
-if [ ! -d ${SERVICEDIR} ]
-then
+if ! isDir "${SERVICEDIR}"; then
 	remote_notify 'Creating service'
 	remote_notify 'Starting service...'
-	uberspace-setup-service ${SERVICENAME} ${DAEMON} > /dev/null 2>&1
+	uberspace-setup-service ${PROJECT_NAME} "${PROJECT_SERVICE}" > /dev/null 2>&1
 else
 	remote_notify 'Restarting service...'
-	svc -h ${SERVICEDIR}
+	svc -du ${SERVICEDIR}
 fi
 
 
